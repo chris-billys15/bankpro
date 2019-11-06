@@ -1,0 +1,40 @@
+/* Style the navigation bar */
+
+Nav {
+    width: 100%;
+    background-color: #ffffff;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    z-index: 99;
+}
+
+/* Navbar links */
+.nav-link {
+    float: left;
+    padding: 8px 16px;
+    margin-top: 3px;
+    text-decoration: none;
+    font-size: 20px;
+    flex: 1 1 auto;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+    color: #5DBCD2;
+}
+
+.header-home {
+    margin-top: 3px;
+    font-size: 20px;
+    padding: 8px 16px;
+    float:left;
+    color: #000000
+}
+
+.bar-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

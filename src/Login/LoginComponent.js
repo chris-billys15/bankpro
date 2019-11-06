@@ -6,29 +6,39 @@ import {
     Button,
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './LoginForm.css';
+import './LoginComponent.css';
 
-export default class LoginForm extends React.Component {
+export default class LoginComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            no_rek : ''
+            no_rek : '',
+            value: ''
+        };
+        this.onChange = this.onChange.bind(this)
+    }
+
+    onChange(e){
+        const re = /^[0-9\b]+$/;
+        if (e.target.value === '' || re.test(e.target.value)) {
+            this.setState({value: e.target.value})
         }
     }
 
     render(){
         return (
             <Container className="App">
+                <navbar/>
                 <div className="card">
                     <h2>Login Bank Pro</h2>
                     <Form className="form">
                         <Col>
                             <FormGroup>
-                                <Label>Account Number</Label>
+                                <Label style={{fontStyle:"italic"}}>Account Number</Label>
                                 <Input
                                     type="number"
-                                    name="email"
-                                    id="exampleEmail"
+                                    name="accountNo"
+                                    id="accountNo"
                                     placeholder="your account number"
                                 />
                             </FormGroup>

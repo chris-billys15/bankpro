@@ -8,7 +8,7 @@
     width: 700px;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
+    padding: 30px;
     display: flex;
 }
 
@@ -24,4 +24,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+Button {
+    margin-left: 16px;
 }

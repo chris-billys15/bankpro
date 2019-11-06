@@ -2,11 +2,16 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import './App.css';
-import LoginForm from "./Login/LoginForm";
+import LoginComponent from "./Login/LoginComponent";
+import TransferComponent from "./Transfer/TransferComponent";
+import NavbarComponent from "./Navbar/NavbarComponent.js";
 
 function App() {
     return (
-        <LoginForm/>
+        <div>
+            <NavbarComponent/>
+            {/*<LoginComponent/>*/}
+        </div>
     );
 }
 
