@@ -6,7 +6,7 @@ import {
     Button,
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './LoginComponent.css';
+import '../CSS/Login.css';
 
 export default class LoginComponent extends React.Component {
     constructor(props) {
@@ -27,8 +27,7 @@ export default class LoginComponent extends React.Component {
 
     render(){
         return (
-            <Container className="App">
-                <navbar/>
+            <Container className="center-container">
                 <div className="card">
                     <h2>Login Bank Pro</h2>
                     <Form className="form">
@@ -43,7 +42,7 @@ export default class LoginComponent extends React.Component {
                                 />
                             </FormGroup>
                         </Col>
-                        <Button>Login</Button>
+                        <Button style={{backgroundColor:"#21242D"}}>Login</Button>
                     </Form>
                 </div>
             </Container>

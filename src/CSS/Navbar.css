@@ -1,8 +1,8 @@
 /* Style the navigation bar */
 
-Nav {
+.navbar {
     width: 100%;
-    background-color: #ffffff;
+    background-color: #000000;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -19,7 +19,6 @@ Nav {
     font-size: 20px;
     flex: 1 1 auto;
 }
-
 /* Navbar links on mouse-over */
 .navbar a:hover {
     color: #5DBCD2;
@@ -30,11 +29,12 @@ Nav {
     font-size: 20px;
     padding: 8px 16px;
     float:left;
-    color: #000000
+    color: #000000;
 }
 
 .bar-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    background-color: white;
 }

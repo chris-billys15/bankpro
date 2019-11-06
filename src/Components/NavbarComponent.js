@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './Navbar.css';
+import '../CSS/Navbar.css';
 
-import TransferComponent from "../Transfer/TransferComponent";
-import HomeComponent from "../Home/HomeComponent";
+import TransferComponent from "./TransferComponent";
+import HomeComponent from "../Components/HomeComponent";
 // import LoginComponent from "./Login/LoginComponent";
-import TransactionsComponent from '../Transaction/TransactionsComponent';
-import LoginComponent from "../Login/LoginComponent";
+import TransactionsComponent from './TransactionsComponent';
+import LoginComponent from "../Components/LoginComponent";
 
 const NavbarComponent = (props) => {
     function getCookie(){
@@ -20,7 +20,7 @@ const NavbarComponent = (props) => {
     return (
         <div>
             <Router>
-                <Nav tabs>
+                <Nav tabs className="bar-wrapper" >
                     <div className="header-home"><b>Bank</b>Pro</div>
                     <div>
                         <Link to={'/'} className="nav-link">Home</Link>
