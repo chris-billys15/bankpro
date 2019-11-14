@@ -18,10 +18,10 @@ export default class LoginComponent extends React.Component {
         this.onChange = this.onChange.bind(this)
     }
 
-    onChange(e){
+    onChange(event){
         const re = /^[0-9\b]+$/;
-        if (e.target.value === '' || re.test(e.target.value)) {
-            this.setState({value: e.target.value})
+        if (event.target.value === '' || re.test(event.target.value)) {
+            this.setState({value: event.target.value})
         }
     }
 
@@ -36,6 +36,7 @@ export default class LoginComponent extends React.Component {
                                 <Label style={{fontStyle:"italic"}}>Account Number</Label>
                                 <Input
                                     type="number"
+                                    min="0"
                                     name="accountNo"
                                     id="accountNo"
                                     placeholder="your account number"

@@ -1,0 +1,116 @@
+.card-transfer{
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    alignment: center;
+    align-self: center;
+    justify-self: center;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.button-check{
+    background-color: white;
+    border-color: #e12159;
+    color: #e12159;
+}
+
+.button-check:hover{
+    background-color: #e12159;
+    border-color: white;
+    color: white;
+}
+.recipient-card{
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    align-self: start;
+    border-radius: 5px; /* 5px rounded corners */
+    outline-color: mediumseagreen;
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: none;
+    flex-direction: row;
+    padding: 8px;
+    outline-style: solid;
+    background-color: #ffffff;
+}
+.recipient-card-none{
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    align-self: start;
+    border-radius: 5px; /* 5px rounded corners */
+    outline-color: darkred;
+    color: darkred;
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: none;
+    flex-direction: row;
+    padding: 8px;
+    outline-style: solid;
+    background-color: #ffffff;
+}
+.card-name{
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    alignment: center;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    padding: 12px;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.button-send-popup{
+    width: 100%;
+    align-self: start;
+    justify-self: start;
+    margin-top: 12px;
+    margin-left: 0px;
+    background-color: #09d3ac;
+}
+
+
+.button-submit:enabled{
+    background-color: #e12159;
+    border-color: white;
+    color: white;
+}
+
+.button-submit:hover{
+    background-color: #e12159;
+    border-color: white;
+    color: white;
+    opacity: 0.8;
+}
+
+.button-submit:disabled{
+    background-color: darkgray;
+    border-color: white;
+    color: white;
+}
+
+.button-send-popup:hover{
+    opacity: 0.6;
+    width: 100%;
+    align-self: start;
+    justify-self: start;
+    margin-top: 12px;
+    margin-left: 0px;
+    background-color: #09d3ac;
+}
