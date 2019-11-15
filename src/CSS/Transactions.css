@@ -11,5 +11,11 @@
     margin-right: auto;
     padding: 30px;
     display: flex;
+    flex-direction: column;
     background-color: #ffffff;
+}
+
+hr {
+    width: 100%;
+    justify-content: center;
 }

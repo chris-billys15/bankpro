@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import '../CSS/Home.css';
+import '../CSS/Transactions.css'
+import TransactionsComponent from "./TransactionsComponent";
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'IDR',
@@ -45,11 +47,10 @@ class HomeComponent extends Component {
                                 {formatter.format(this.state.balance)}
                             </div>
                         </div>
-
                     </div>
                 </div>
-                </div>
-
+                <TransactionsComponent/>
+            </div>
         );
     }
 }

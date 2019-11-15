@@ -5,7 +5,6 @@ import '../CSS/Navbar.css';
 
 import TransferComponent from "./TransferComponent";
 import HomeComponent from "../Components/HomeComponent";
-// import LoginComponent from "./Login/LoginComponent";
 import TransactionsComponent from './TransactionsComponent';
 import LoginComponent from "../Components/LoginComponent";
 
