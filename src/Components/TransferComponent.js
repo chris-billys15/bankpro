@@ -11,7 +11,7 @@ class TransferComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            recipientfullName: 'Azhar D.',
+            recipientFullName: 'Azhar D.',
             recipientAccNo: '12367890345'
         };
         this.handleChange = this.handleChange.bind(this);
@@ -42,7 +42,7 @@ class TransferComponent extends Component {
         const content = (
             <div className="flex-container-col">
                 <label style={{fontWeight:"bold"}}>Recipient :</label>
-                <label style={{fontStyle:"italic"}}>{this.state.recipientfullName}</label>
+                <label style={{fontStyle:"italic"}}>{this.state.recipientFullName}</label>
                 <label style={{fontWeight:"bold"}}>Amount :</label>
                 <Input type="money"/>
                 <Button className="button-send-popup" style={{width:"100%"}} onClick={this.handleSendButton}>SEND</Button>
@@ -94,7 +94,7 @@ class TransferComponent extends Component {
                         <img src={require('../avatar.png')} alt="Azhar D." style={{width:"50px", margin :"10px"}}/>
                         <div className="flex-container-col">
                             <div className="fullName" style={{alignmentBaseline:"left", marginTop:"6px"}}>
-                                {this.state.recipientfullName}
+                                {this.state.recipientFullName}
                             </div>
                             <div style={{alignSelf:"left"}}>
                                 Account No. : {this.state.recipientAccNo}

@@ -38,7 +38,7 @@ class HomeComponent extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="card-balance" >
+                    <div className="card" style={{backgroundColor:"#e12159"}}>
                         <div className="flex-container-col">
                             <div className="balance">
                                 Total Balance
@@ -49,7 +49,7 @@ class HomeComponent extends Component {
                         </div>
                     </div>
                 </div>
-                <TransactionsComponent/>
+                <TransactionsComponent style={{width:"100%"}}/>
             </div>
         );
     }

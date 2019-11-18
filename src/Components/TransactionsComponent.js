@@ -7,7 +7,7 @@ import '../CSS/Transactions.css'
 class TransactionsComponent extends Component {
     render() {
         return (
-            <div className="card-transactions">
+            <div className="card-transactions" style={{width:"60%"}}>
                 <h2>Transactions History</h2>
                 <hr/>
                 <Table responsive>

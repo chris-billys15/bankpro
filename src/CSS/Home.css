@@ -41,26 +41,12 @@
     alignment: center;
     align-self: center;
     width: 100%;
-    margin:9px;
+    margin: 10px;
     padding: 30px;
     display: flex;
     background-color: #ffffff;
 }
 
-.card-balance{
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 5px; /* 5px rounded corners */
-    alignment: center;
-    align-self: center;
-    justify-content: center;
-    width: 100%;
-    margin: 10px;
-    padding: 30px;
-    display: flex;
-    background-color: #e12159;
-}
 .center-container{
     height: 100vh; /*100% dari height body*/
     display: flex;
