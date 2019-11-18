@@ -1,9 +1,10 @@
 // Home.js
 
 import React, { Component } from 'react';
-import '../CSS/Home.css';
-import '../CSS/Transactions.css'
+
 import TransactionsComponent from "./TransactionsComponent";
+import '../CSS/Transactions.css'
+import '../CSS/Home.css';
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'IDR',
@@ -49,7 +50,7 @@ class HomeComponent extends Component {
                         </div>
                     </div>
                 </div>
-                <TransactionsComponent style={{width:"100%"}}/>
+                <TransactionsComponent className="home-transactions"/>
             </div>
         );
     }

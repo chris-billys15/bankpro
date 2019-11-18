@@ -68,7 +68,7 @@ class TransferComponent extends Component {
                 <div className="card-transfer">
                     <h2>Transfer</h2>
                 </div>
-                <Form className="card-transfer" onSubmit={this.handleSubmit} style={{marginTop:"12px"}}>
+                <Form className="card-transfer" onSubmit={this.handleSubmit} style={{marginTop:"8px"}}>
                     <Col>
                         <FormGroup>
                             <Label style={{fontStyle:"italic"}}>Send to :</Label>

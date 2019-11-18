@@ -12,6 +12,7 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 8px;
     padding: 30px;
     display: flex;
     flex-direction: column;

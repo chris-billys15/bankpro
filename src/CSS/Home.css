@@ -41,7 +41,7 @@
     alignment: center;
     align-self: center;
     width: 100%;
-    margin: 10px;
+    margin: 8px;
     padding: 30px;
     display: flex;
     background-color: #ffffff;
@@ -52,4 +52,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.home-transactions{
+    width: 100%;
+    margin: 0;
 }
