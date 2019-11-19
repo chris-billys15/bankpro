@@ -3,30 +3,31 @@ image: node:latest
 
 #This command is run before all the jobs
 before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  - npm install
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - npm install
 
 stages:
-  - test
-  - deploy
+    - lint
+    - test
+    - deploy
 
 # lint and test are two different jobs in the same stage.
 # This allows us to run these two in parallel and making build faster
 
 # Job 1:
 lint:
-  stage: test
-  script:
-    - npm run lint
+    stage: lint
+    script:
+        - npm run lint
 # Job 2:
 test:
-  stage: test
-  script:
-    - npm run test
+    stage: test
+    script:
+        - npm run test
 
 deploy:
-  stage: deploy
-  script:
-    - bash deploy.sh
-  only:
-    - master
+    stage: deploy
+    script:
+        - bash deploy.sh
+    only:
+        - master
