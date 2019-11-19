@@ -1,7 +1,8 @@
 // Home.js
-
+// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 
+// eslint-disable-next-line no-unused-vars
 import TransactionsComponent from './TransactionsComponent'
 import '../CSS/Transactions.css'
 import '../CSS/Home.css'
