@@ -10,7 +10,18 @@ class TransactionsComponent extends Component {
         this.state = {
             fullName :'Christopher Billy Setiawan',
             acc_no : '1234567890',
-            balance : '1000000'
+            balance : '1000000',
+            products: [{
+                timestamp: 'gatau',
+                jenis_transaksi: 'Kredit',
+                jumlah_transaksi: 100000,
+                rekening_terkait: 1234567812,
+            }, {
+                timestamp: 'cie',
+                jenis_transaksi: 'Debit',
+                jumlah_transaksi: 100000,
+                rekening_terkait: 1234567812,
+            }]
         };
     }
     columns = [{
@@ -28,17 +39,7 @@ class TransactionsComponent extends Component {
     }];
 
     // products = []
-    products = [{
-        timestamp: 'gatau',
-        jenis_transaksi: 'Kredit',
-        jumlah_transaksi: 100000,
-        rekening_terkait: 1234567812,
-    }, {
-        timestamp: 'cie',
-        jenis_transaksi: 'Debit',
-        jumlah_transaksi: 100000,
-        rekening_terkait: 1234567812,
-    }]
+
     render() {
         return (
             <div style={{display:"flex"}}>
@@ -47,7 +48,7 @@ class TransactionsComponent extends Component {
                     <hr/>
                     <BootstrapTable
                         keyField='id'
-                        data={ this.products }
+                        data={ this.state.products }
                         columns={ this.columns }
                         noDataIndication= "Oops.. No Transaction Found :("
                         striped

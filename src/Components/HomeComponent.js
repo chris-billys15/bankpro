@@ -36,7 +36,7 @@ class HomeComponent extends Component {
                   {this.state.fullName}
                 </div>
                 <div style={{ alignSelf: 'left' }}>
-                                    Account No. : {this.state.acc_no}
+                  Account No. : {this.state.acc_no}
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@ class HomeComponent extends Component {
           <div className="card" style={{ backgroundColor: '#e12159' }}>
             <div className="flex-container-col">
               <div className="balance">
-                                Total Balance
+                Total Balance
               </div>
               <div className="balance">
                 {formatter.format(this.state.balance)}
