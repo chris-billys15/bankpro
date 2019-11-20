@@ -38,7 +38,6 @@ class TransactionsComponent extends Component {
         text: 'Rekening Terkait'
     }];
 
-    // products = []
 
     render() {
         return (

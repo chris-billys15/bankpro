@@ -1,6 +1,8 @@
 // Home.js
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
+import {Button} from 'reactstrap'
 
 // eslint-disable-next-line no-unused-vars
 import TransactionsComponent from './TransactionsComponent'
@@ -16,11 +18,17 @@ class HomeComponent extends Component {
     super(props)
     this.state = {
       fullName: 'Christopher Billy Setiawan',
-      acc_no: '1234567890',
+      acc_no: props.no_rek,
       balance: '1000000'
     }
   }
 
+  handleLogout() {
+    // this.cookie.remove("cookieBankPro")
+    return (
+        <Redirect to='/login'/>
+    );
+  }
   render () {
     return (
       <div className="container">
