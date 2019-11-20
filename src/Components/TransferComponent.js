@@ -12,14 +12,20 @@ class TransferComponent extends Component {
     super(props)
     this.state = {
       recipientFullName: 'Azhar D.',
-      recipientAccNo: '12367890345'
+      recipientAccNo: 12367890345,
+      amount: 100000,
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChangeRecipientAccNo = this.handleChangeRecipientAccNo.bind(this)
+    this.handleChangeAmount = this.handleChangeAmount.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange (event) {
-    this.setState({ value: event.target.value })
+  handleChangeRecipientAccNo (event) {
+    this.setState({ recipientAccNo: event.target.value })
+  }
+
+  handleChangeAmount (event) {
+    this.setState({ amount: event.target.value })
   }
 
   handleSubmit (event) {
@@ -27,8 +33,23 @@ class TransferComponent extends Component {
     event.preventDefault()
   }
 
-  handleSendButton (event) {
-
+  handleSendButton () {
+    let res;
+    var soap = require('soap');
+    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+    var args = {
+      RekeningPengirim: this.props.no_rek,
+      RekeningPenerima: this.state.recipientAccNo,
+      Nominal: this.state.nominal
+    };
+    soap.createClient(url, function(err, client) {
+      console.log(err);
+      client.transfer(args, function(err, result) {
+        console.log(result);
+        res = result;
+      });
+    });
+    return res;
   }
 
   checkAccNumber () {
@@ -45,7 +66,7 @@ class TransferComponent extends Component {
         <label style={{ fontStyle: 'italic' }}>{this.state.recipientFullName}</label>
         <label style={{ fontWeight: 'bold' }}>Amount :</label>
         <Input type="money"/>
-        <Button className="button-send-popup" style={{ width: '100%' }} onClick={this.handleSendButton}>SEND</Button>
+        <Button className="button-send-popup" style={{ width: '100%' }} onChange={this.handleChangeAmount} onClick={this.handleSendButton}>SEND</Button>
       </div>
     )
 
@@ -80,7 +101,7 @@ class TransferComponent extends Component {
                   id="accountNo"
                   placeholder="Recipient account number"
                   value={this.state.value}
-                  onChange={this.handleChange}
+                  onChange={this.handleChangeRecipientAccNo}
                 />
                 <Button className="button-check" name="check-button" onClick={this.checkAccNumber}> CHECK</Button>
               </div>

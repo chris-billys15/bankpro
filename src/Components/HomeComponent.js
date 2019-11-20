@@ -1,8 +1,7 @@
 // Home.js
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
-import {Button} from 'reactstrap'
+import { Redirect } from 'react-router-dom'
 
 // eslint-disable-next-line no-unused-vars
 import TransactionsComponent from './TransactionsComponent'
@@ -23,12 +22,6 @@ class HomeComponent extends Component {
     }
   }
 
-  handleLogout() {
-    // this.cookie.remove("cookieBankPro")
-    return (
-        <Redirect to='/login'/>
-    );
-  }
   render () {
     return (
       <div className="container">

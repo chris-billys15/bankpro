@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import { BrowserRouter as Router, Switch, Route, Link,Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import React from 'react';
 import './App.css';
 import NavbarComponent from "./Components/NavbarComponent.js";
@@ -16,6 +16,13 @@ export class App extends React.Component{
         this.mountNavbar = this.mountNavbar.bind(this);
         this.unMountNavbar = this.unMountNavbar.bind(this);
     }
+
+    componentWillMount() {
+        if (this.isCookieExist()) {
+            this.setState({renderNavbar:true})
+        }
+    }
+
     getCookie () {
         return localStorage.getItem("cookieBankPro")
     }
@@ -32,20 +39,20 @@ export class App extends React.Component{
     }
 
     render() {
-        let component = ''
+        let component = '';
         if(this.isCookieExist()){
-            component='/'
+            component='/';
         }
         else{
             component='/login'
         }
         return (
             <Router>
+                <Redirect to={component}/>
                 <Switch>
                     <Route path="/login" component={() => this.state.renderNavbar === false ? <LoginComponent renderNavbar={this.mountNavbar}/> : null} />
-                    <Route path="/" component={() => this.state.renderNavbar === true? <NavbarComponent unRenderNavbar={this.unMountNavbar} /> : null} />
+                    <Route path="/" component={() => this.state.renderNavbar === true ? <NavbarComponent unRenderNavbar={this.unMountNavbar} /> : null} />
                 </Switch>
-                <Redirect to={component}/>
             </Router>
         );
     }
