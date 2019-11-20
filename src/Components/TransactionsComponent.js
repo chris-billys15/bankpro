@@ -15,11 +15,13 @@ class TransactionsComponent extends Component {
                 timestamp: 'gatau',
                 jenis_transaksi: 'Kredit',
                 jumlah_transaksi: 100000,
+                bank: 'BCA',
                 rekening_terkait: 1234567812,
             }, {
                 timestamp: 'cie',
                 jenis_transaksi: 'Debit',
                 jumlah_transaksi: 100000,
+                bank: 'Mandiri',
                 rekening_terkait: 1234567812,
             }]
         };
@@ -33,6 +35,9 @@ class TransactionsComponent extends Component {
     }, {
         dataField: 'jumlah_transaksi',
         text: 'Jumlah Transaksi'
+    }, {
+        dataField: 'bank',
+        text: 'Bank'
     }, {
         dataField: 'rekening_terkait',
         text: 'Rekening Terkait'
