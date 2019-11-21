@@ -31,10 +31,10 @@ export default class LoginComponent extends React.Component {
     if(rekeningExist){
       console.log(this.state.noRekening)
       localStorage.setItem("cookieBankPro", this.state.noRekening)
-      this.setState({loggedIn:true});
+      this.setState({error:false, loggedIn:true});
       this.props.renderNavbar(this.state.noRekening);
     } else {
-      this.setState({error:true});
+      this.setState({error:true, loggedIn:false});
     }
   }
 
@@ -59,7 +59,6 @@ export default class LoginComponent extends React.Component {
   }
 
   render () {
-    const { error } = this.state.error;
     return (
       <Container className="center-container">
         <div className="card">
@@ -68,6 +67,7 @@ export default class LoginComponent extends React.Component {
             <Col>
               <FormGroup>
                 <Label style={{ fontStyle: 'italic' }}>Account Number</Label>
+                {this.state.error && <div className="alert alert-danger"style={{padding:"5px", marginBottom:"8px"}}><strong>There's no such account.</strong> Try again!</div>}
                 <Input
                   type="number"
                   min="0"
@@ -76,7 +76,6 @@ export default class LoginComponent extends React.Component {
                   placeholder="your account number"
                   onChange={(e) => this.onChange(e)}
                 />
-                {error && <div>There's no such account. Try again!</div>}
               </FormGroup>
             </Col>
             <Button type="submit" style={{ backgroundColor: '#21242D' }} >Login</Button>
