@@ -8,42 +8,35 @@ class TransactionsComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fullName :'Christopher Billy Setiawan',
-            acc_no : '1234567890',
-            balance : '1000000',
-            products: [{
-                timestamp: 'gatau',
-                jenis_transaksi: 'Kredit',
-                jumlah_transaksi: 100000,
-                bank: 'BCA',
-                rekening_terkait: 1234567812,
-            }, {
-                timestamp: 'cie',
-                jenis_transaksi: 'Debit',
-                jumlah_transaksi: 100000,
-                bank: 'Mandiri',
-                rekening_terkait: 1234567812,
-            }]
+            products: []
         };
+        this.parseHistoryList = this.parseHistoryList.bind(this);
     }
     columns = [{
-        dataField: 'timestamp',
+        dataField: 'waktu',
         text: 'Waktu Transaksi'
     }, {
-        dataField: 'jenis_transaksi',
-        text: 'Jenis Transaksi',
+        dataField: 'jenis',
+        text: 'Jenis Transaksi'
     }, {
-        dataField: 'jumlah_transaksi',
-        text: 'Jumlah Transaksi'
+        dataField: 'jumlah',
+        text: 'Jumlah Transaksi',
     }, {
-        dataField: 'bank',
-        text: 'Bank'
-    }, {
-        dataField: 'rekening_terkait',
+        dataField: 'rekeningTerkait',
         text: 'Rekening Terkait'
     }];
 
+    componentDidMount() {
+        if(this.props.responseObject){
+            this.parseHistoryList(this.props.responseObject.return.historyList);
+        }
+    }
 
+    parseHistoryList(historyList){
+        if(historyList !== null){
+            this.setState({products : historyList})
+        }
+    }
     render() {
         return (
             <div style={{display:"flex"}}>

@@ -11,6 +11,7 @@ export class App extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+            noRekening: null,
             renderNavbar : false
         }
         this.mountNavbar = this.mountNavbar.bind(this);
@@ -30,8 +31,9 @@ export class App extends React.Component{
         return this.getCookie() != null
     }
 
-    mountNavbar(){
+    mountNavbar(AccNo){
         this.setState({renderNavbar:true})
+        this.setState({noRekening: AccNo})
     }
 
     unMountNavbar(){
@@ -51,7 +53,7 @@ export class App extends React.Component{
                 <Redirect to={component}/>
                 <Switch>
                     <Route path="/login" component={() => this.state.renderNavbar === false ? <LoginComponent renderNavbar={this.mountNavbar}/> : null} />
-                    <Route path="/" component={() => this.state.renderNavbar === true ? <NavbarComponent unRenderNavbar={this.unMountNavbar} /> : null} />
+                    <Route path="/" component={() => this.state.renderNavbar === true ? <NavbarComponent unRenderNavbar={this.unMountNavbar}/> : null} />
                 </Switch>
             </Router>
         );

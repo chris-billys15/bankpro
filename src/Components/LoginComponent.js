@@ -12,7 +12,7 @@ export default class LoginComponent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      no_rek: null,
+      noRekening: null,
       loggedIn:false,
       error:false,
     }
@@ -23,26 +23,19 @@ export default class LoginComponent extends React.Component {
   onChange (event) {
     const re = /^[0-9\b]+$/
     if (re.test(event.target.value)) {
-      this.setState({ no_rek: event.target.value })
+      this.setState({ noRekening: event.target.value })
     }
   }
 
   onCallback(rekeningExist){
     if(rekeningExist){
-      console.log("wakgeng")
-      console.log(this.state.no_rek)
-      localStorage.setItem("cookieBankPro", this.state.no_rek)
+      console.log(this.state.noRekening)
+      localStorage.setItem("cookieBankPro", this.state.noRekening)
       this.setState({loggedIn:true});
-      this.props.renderNavbar();
+      this.props.renderNavbar(this.state.noRekening);
     } else {
       this.setState({error:true});
     }
-  }
-
-  onLogin(e){
-    console.log(this.state.no_rek);
-    this.validateRekening(this.state.no_rek, this.onCallback.bind(this));
-    e.preventDefault();
   }
 
   validateRekening(AccNo, cb){
@@ -57,6 +50,12 @@ export default class LoginComponent extends React.Component {
         cb(res)
       });
     });
+  }
+
+  onLogin(e){
+    console.log(this.state.noRekening);
+    this.validateRekening(this.state.noRekening, this.onCallback.bind(this));
+    e.preventDefault();
   }
 
   render () {
