@@ -44,6 +44,7 @@ class HomeComponent extends Component {
         <div className="flex-container-row">
           <div className="card">
             <div className="flex-container-row">
+              {/* eslint-disable-next-line no-undef */}
               <img src={require('../avatar.png')} alt={this.state.fullName} style={{ width: '80px', margin: '10px 10px 10px 10px' }}/>
               <div className="flex-container-col">
                 <div className="fullName">

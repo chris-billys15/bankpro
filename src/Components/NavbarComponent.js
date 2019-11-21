@@ -1,10 +1,16 @@
 import React from 'react'
-import { Nav} from 'reactstrap'
+// eslint-disable-next-line no-unused-vars
+import {Nav} from 'reactstrap'
+// eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import '../CSS/Navbar.css'
+// eslint-disable-next-line no-unused-vars
 import TransferComponent from './TransferComponent'
+// eslint-disable-next-line no-unused-vars
 import HomeComponent from '../Components/HomeComponent'
+// eslint-disable-next-line no-unused-vars
 import TransactionsComponent from './TransactionsComponent'
+// eslint-disable-next-line no-unused-vars
 import LoginComponent from '../Components/LoginComponent'
 
 export class NavbarComponent extends React.Component{
@@ -27,6 +33,7 @@ export class NavbarComponent extends React.Component{
   }
 
   getProfile(AccNo, cb){
+    // eslint-disable-next-line no-undef
     var soap = require('soap');
     var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {rekening: AccNo};

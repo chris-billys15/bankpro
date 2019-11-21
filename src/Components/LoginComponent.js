@@ -1,9 +1,8 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Redirect } from 'react-router-dom'
-import {
-  Container, Col, Form,
-  FormGroup, Label, Input,
-  Button
+// eslint-disable-next-line no-unused-vars
+import { Container, Col, Form, FormGroup, Label, Input, Button
 } from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../CSS/Login.css'
@@ -40,6 +39,7 @@ export default class LoginComponent extends React.Component {
 
   validateRekening(AccNo, cb){
     let res = false;
+    // eslint-disable-next-line no-undef
     var soap = require('soap');
     var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {Rekening: AccNo};
