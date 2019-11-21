@@ -1,8 +1,6 @@
 // TransactionsComponent.js
 
-// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
-// eslint-disable-next-line no-unused-vars
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../CSS/Transactions.css'

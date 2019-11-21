@@ -1,15 +1,11 @@
 // TransferComponent.js
 
-// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../CSS/Transfer.css'
-// eslint-disable-next-line no-unused-vars
 import { Col, FormGroup, Input, Label, Button } from 'reactstrap'
-// eslint-disable-next-line no-unused-vars
 import { PopupboxManager, PopupboxContainer } from 'react-popupbox'
 import 'react-popupbox/dist/react-popupbox.css'
-// eslint-disable-next-line no-unused-vars
 import { Form } from 'react-bootstrap'
 class TransferComponent extends Component {
   constructor (props) {
@@ -39,7 +35,7 @@ class TransferComponent extends Component {
 
   handleSendButton () {
     let res;
-    // eslint-disable-next-line no-undef
+
     var soap = require('soap');
     var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {
