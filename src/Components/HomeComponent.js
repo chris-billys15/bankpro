@@ -36,11 +36,11 @@ class HomeComponent extends Component {
   render () {
     return (
       <div className="container">
-        <div className="card">
+        <div className="card-home">
           <div className="welcome">Welcome to Bank Pro</div>
         </div>
         <div className="flex-container-row">
-          <div className="card">
+          <div className="card-home">
             <div className="flex-container-row">
               <img src={require('../avatar.png')} alt={this.state.fullName} style={{ width: '80px', margin: '10px 10px 10px 10px' }}/>
               <div className="flex-container-col">
@@ -56,8 +56,8 @@ class HomeComponent extends Component {
               </div>
             </div>
           </div>
-          <div className="card" style={{ backgroundColor: '#e12159' }}>
-            <div className="flex-container-col">
+          <div className="card-home" style={{ backgroundColor: '#e12159'}}>
+            <div className="flex-container-col" style={{alignSelf:"center"}}>
               <div className="balance">
                 Total Balance
               </div>

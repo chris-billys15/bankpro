@@ -18,7 +18,7 @@ export class App extends React.Component{
         this.unMountNavbar = this.unMountNavbar.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.isCookieExist()) {
             this.setState({renderNavbar:true})
         }
