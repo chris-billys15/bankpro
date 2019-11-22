@@ -11,13 +11,20 @@ class TransferComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      recipientFullName: '',
-      recipientAccNo: null,
+      recipientFullName: 'Christopher Billy Setiawan',
+      recipientAccNo: 1234567,
       amount: null,
+      messageState: 0,
+      /*
+      0 : haven't check rekening
+      1 : if rekening exists
+      2 : else if rekening not exists
+      */
     }
     this.handleChangeRecipientAccNo = this.handleChangeRecipientAccNo.bind(this)
     this.handleChangeAmount = this.handleChangeAmount.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.changeMessageState = this.changeMessageState.bind(this)
   }
 
   handleChangeRecipientAccNo (event) {
@@ -35,7 +42,6 @@ class TransferComponent extends Component {
 
   handleSendButton () {
     let res;
-
     var soap = require('soap');
     var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {
@@ -53,7 +59,22 @@ class TransferComponent extends Component {
     return res;
   }
 
+  changeMessageState(messageState){
+    if(messageState === 1){
+      this.setState({messageState:1})
+    }
+    else if(messageState === 2){
+      this.setState({messageState:2})
+    }
+    else {
+      this.setState({messageState:0})
+    }
+  }
+
   checkAccNumber () {
+    /*
+    validateRekening()? this.changeMessageState(1) : this.changeMessageState(2)
+    */
     document.getElementById('receiver').style.display = 'flex'
     document.getElementById('receiver-none').style.display = 'flex'
     document.getElementById('send-button-transfer').disabled = false
@@ -109,24 +130,30 @@ class TransferComponent extends Component {
             </FormGroup>
             <div className="custom-control custom-checkbox mb-3">
               <input type="checkbox" className="custom-control-input" id="customCheck" name="example1"/>
-              <label className="custom-control-label" htmlFor="customCheck">Virtual Account</label>
             </div>
           </Col>
-          <div className="recipient-card" id="receiver">
-            {/* eslint-disable-next-line no-undef */}
-            <img src={require('../avatar.png')} alt="Azhar D." style={{ width: '50px', margin: '10px' }}/>
-            <div className="flex-container-col">
-              <div className="fullName" style={{ alignmentBaseline: 'left', marginTop: '6px' }}>
-                {this.state.recipientFullName}
-              </div>
-              <div style={{ alignSelf: 'left' }}>
-                                Account No. : {this.state.recipientAccNo}
+          {
+            this.state.messageState == 1 &&
+            <div className="alert alert-success" style={{display:"none"}} id="receiver">
+              <img src={require('../avatar.png')} alt="Azhar D." style={{ width: '50px', margin: '10px' }}/>
+              <div className="flex-container-col">
+                <div className="fullName" style={{ alignmentBaseline: 'left', marginTop: '6px' }}>
+                  {this.state.recipientFullName}
+                </div>
+                <div style={{ alignSelf: 'left', marginTop:"5px"}}>
+                                  Account No. : {this.state.recipientAccNo}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="recipient-card-none" id="receiver-none">
-                        oops... account not found
-          </div>
+          }
+          
+          {
+            this.state.messageState == 2 &&
+            <div className="alert alert-danger" style={{display:"none"}} id="receiver-none">
+              oops... account not found
+            </div>
+          }
+          
           <Button id="send-button-transfer" type="Submit" className="button-submit" disabled={true}> Submit </Button>
         </Form>
         <PopupboxContainer />
