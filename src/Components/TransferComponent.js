@@ -12,7 +12,8 @@ class TransferComponent extends Component {
     super(props)
     this.state = {
       recipientFullName: 'Christopher Billy Setiawan',
-      recipientAccNo: 1234567,
+      recipientAccNo: null,
+      recipientAccNoExist: null,
       amount: null,
       messageState: 0,
       /*
@@ -24,6 +25,7 @@ class TransferComponent extends Component {
     this.handleChangeRecipientAccNo = this.handleChangeRecipientAccNo.bind(this)
     this.handleChangeAmount = this.handleChangeAmount.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.onCheck = this.onCheck.bind(this)
     this.changeMessageState = this.changeMessageState.bind(this)
   }
 
@@ -71,14 +73,37 @@ class TransferComponent extends Component {
     }
   }
 
-  checkAccNumber () {
+  handleCheckCallBack(rekeningExist){
+    if(rekeningExist){
+      this.changeMessageState(1)
+      document.getElementById('send-button-transfer').disabled = false
+    }
+    else{
+      this.changeMessageState(2)
+    }
+  }
+
+  checkAccNumber (handleCheckCallback) {
     /*
     validateRekening()? this.changeMessageState(1) : this.changeMessageState(2)
     */
-    document.getElementById('receiver').style.display = 'flex'
-    document.getElementById('receiver-none').style.display = 'flex'
-    document.getElementById('send-button-transfer').disabled = false
-    document.getElementById('send-button-transfer').enabled = true
+
+    let res = false;
+    var soap = require('soap');
+    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+    var args = {Rekening: this.state.recipientAccNo};
+    soap.createClient(url, function(err, client) {
+      client.validateRekening(args, function(err, result) {
+        res = result['return'];
+        handleCheckCallback(res)
+      });
+    });
+
+  }
+
+  onCheck(e){
+    this.checkAccNumber(this.handleCheckCallBack.bind(this))
+    e.preventDefault();
   }
 
   openPopupbox () {
@@ -125,7 +150,7 @@ class TransferComponent extends Component {
                   value={this.state.value}
                   onChange={this.handleChangeRecipientAccNo}
                 />
-                <Button className="button-check" name="check-button" onClick={this.checkAccNumber}> CHECK</Button>
+                <Button className="button-check" name="check-button" onClick={this.onCheck}> CHECK</Button>
               </div>
             </FormGroup>
             <div className="custom-control custom-checkbox mb-3">
@@ -134,11 +159,11 @@ class TransferComponent extends Component {
           </Col>
           {
             this.state.messageState == 1 &&
-            <div className="alert alert-success" style={{display:"none"}} id="receiver">
+            <div className="alert alert-success" id="receiver">
               <img src={require('../avatar.png')} alt="Azhar D." style={{ width: '50px', margin: '10px' }}/>
               <div className="flex-container-col">
                 <div className="fullName" style={{ alignmentBaseline: 'left', marginTop: '6px' }}>
-                  {this.state.recipientFullName}
+                  {/*{this.state.recipientFullName}*/}
                 </div>
                 <div style={{ alignSelf: 'left', marginTop:"5px"}}>
                                   Account No. : {this.state.recipientAccNo}
@@ -146,14 +171,14 @@ class TransferComponent extends Component {
               </div>
             </div>
           }
-          
+
           {
             this.state.messageState == 2 &&
-            <div className="alert alert-danger" style={{display:"none"}} id="receiver-none">
+            <div className="alert alert-danger" id="receiver-none">
               oops... account not found
             </div>
           }
-          
+
           <Button id="send-button-transfer" type="Submit" className="button-submit" disabled={true}> Submit </Button>
         </Form>
         <PopupboxContainer />
