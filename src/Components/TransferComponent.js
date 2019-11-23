@@ -13,13 +13,13 @@ class TransferComponent extends Component {
     this.state = {
       recipientFullName: 'Christopher Billy Setiawan',
       recipientAccNo: null,
-      recipientAccNoExist: null,
       amount: null,
       messageState: 0,
       /*
       0 : haven't check rekening
       1 : if rekening exists
       2 : else if rekening not exists
+      3 : if virtualaccount
       */
     }
     this.handleChangeRecipientAccNo = this.handleChangeRecipientAccNo.bind(this)
@@ -61,22 +61,35 @@ class TransferComponent extends Component {
     return res;
   }
 
-  changeMessageState(messageState){
-    if(messageState === 1){
-      this.setState({messageState:1})
-    }
-    else if(messageState === 2){
-      this.setState({messageState:2})
-    }
-    else {
-      this.setState({messageState:0})
-    }
+  changeMessageState(msgState){
+    this.setState({messageState:msgState})
   }
 
-  handleCheckCallBack(rekeningExist){
-    if(rekeningExist){
-      this.changeMessageState(1)
+  getReceiverProfileCallback(result){
+    this.setState({recipientFullName:result.return.namaPengguna})
+    this.changeMessageState(1)
+    document.getElementById('send-button-transfer').disabled = false
+    document.getElementById('send-button-transfer').enabled = true
+  }
+  getReceiverProfile(callback){
+    var soap = require('soap');
+    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+    var args = {rekening: this.state.recipientAccNo};
+    soap.createClient(url, function(err, client){
+      client.historyTransaction(args, function(err,result){
+        callback(result);
+      })
+    })
+  }
+
+  handleCheckCallBack(response){
+    if(response.return.accountExists){
+      this.getReceiverProfile(this.getReceiverProfileCallback.bind(this))
+    }
+    else if (response.return.virtualAccount){
+      this.changeMessageState(3)
       document.getElementById('send-button-transfer').disabled = false
+      document.getElementById('send-button-transfer').enabled = true
     }
     else{
       this.changeMessageState(2)
@@ -84,27 +97,24 @@ class TransferComponent extends Component {
   }
 
   checkAccNumber (handleCheckCallback) {
-    /*
-    validateRekening()? this.changeMessageState(1) : this.changeMessageState(2)
-    */
-
     let res = false;
     var soap = require('soap');
     var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {Rekening: this.state.recipientAccNo};
     soap.createClient(url, function(err, client) {
       client.validateRekening(args, function(err, result) {
-        res = result['return'];
+        res = result;
         handleCheckCallback(res)
       });
     });
-
   }
 
   onCheck(e){
     this.checkAccNumber(this.handleCheckCallBack.bind(this))
     e.preventDefault();
   }
+
+  
 
   openPopupbox () {
     const content = (
@@ -163,7 +173,7 @@ class TransferComponent extends Component {
               <img src={require('../avatar.png')} alt="Azhar D." style={{ width: '50px', margin: '10px' }}/>
               <div className="flex-container-col">
                 <div className="fullName" style={{ alignmentBaseline: 'left', marginTop: '6px' }}>
-                  {/*{this.state.recipientFullName}*/}
+                  {this.state.recipientFullName}
                 </div>
                 <div style={{ alignSelf: 'left', marginTop:"5px"}}>
                                   Account No. : {this.state.recipientAccNo}
@@ -176,6 +186,12 @@ class TransferComponent extends Component {
             this.state.messageState == 2 &&
             <div className="alert alert-danger" id="receiver-none">
               oops... account not found
+            </div>
+          }
+          {
+            this.state.messageState == 3 &&
+            <div className="alert alert-info" id="receiver-virtualAcc">
+              Virtual Account detected
             </div>
           }
 

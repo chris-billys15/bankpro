@@ -24,8 +24,9 @@ export default class LoginComponent extends React.Component {
     }
   }
 
-  onCallback(rekeningExist){
-    if(rekeningExist){
+  onCallback(rekeningExists){
+    console.log(rekeningExists);
+    if(rekeningExists){
       console.log(this.state.noRekening)
       localStorage.setItem("cookieBankPro", this.state.noRekening)
       this.setState({error:false, loggedIn:true});
@@ -42,9 +43,9 @@ export default class LoginComponent extends React.Component {
     var args = {Rekening: AccNo};
     soap.createClient(url, function(err, client) {
       client.validateRekening(args, function(err, result) {
-        console.log(result['return']);
-        res = result['return'];
-        cb(res)
+        console.log(result);
+        res = result.return.accountExists;
+        cb(result)
       });
     });
   }
