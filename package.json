@@ -3,21 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.6.1",
     "bootstrap": "^4.3.1",
-    "material-ui": "^0.20.2",
     "pm2": "^4.1.2",
-    "rc-form": "^2.4.10",
     "react": "^16.11.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-bootstrap-table-next": "^3.3.1",
-    "react-cookie": "^4.0.1",
     "react-dom": "^16.11.0",
     "react-popupbox": "^2.0.8",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "reactstrap": "^8.1.1",
-    "xml-js": "^1.6.11"
+    "soap": "^0.30.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,6 +39,7 @@
   },
   "devDependencies": {
     "eslint": "^6.6.0",
-    "eslint-plugin-react": "^7.16.0"
+    "eslint-plugin-react": "^7.16.0",
+    "jest": "^24.9.0"
   }
 }

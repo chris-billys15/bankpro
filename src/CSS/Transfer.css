@@ -3,7 +3,6 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
     transition: 0.3s;
     border-radius: 5px; /* 5px rounded corners */
-    alignment: center;
     align-self: center;
     justify-self: center;
     width: 60%;
@@ -32,7 +31,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
     transition: 0.3s;
     align-self: start;
-    border-radius: 5px; /* 5px rounded corners */
+    border-radius: 3px; /* 5px rounded corners */
     outline-color: mediumseagreen;
     width: 100%;
     margin-left: 10px;
@@ -41,7 +40,7 @@
     flex-direction: row;
     padding: 8px;
     outline-style: solid;
-    background-color: #ffffff;
+    background-color: mediumaquamarine;
 }
 .recipient-card-none{
     /* Add shadows to create the "card" effect */
@@ -65,7 +64,6 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
     transition: 0.3s;
     border-radius: 5px; /* 5px rounded corners */
-    alignment: center;
     align-self: center;
     justify-self: center;
     width: 100%;
@@ -91,6 +89,8 @@
     background-color: #e12159;
     border-color: white;
     color: white;
+    width:100%;
+    margin-left: 0px;
 }
 
 .button-submit:hover{
@@ -98,12 +98,16 @@
     border-color: white;
     color: white;
     opacity: 0.8;
+    width:100%;
+    margin-left: 0px;
 }
 
 .button-submit:disabled{
     background-color: darkgray;
     border-color: white;
     color: white;
+    width:100%;
+    margin-left: 0px;
 }
 
 .button-send-popup:hover{
