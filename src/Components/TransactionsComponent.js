@@ -52,7 +52,7 @@ class TransactionsComponent extends Component {
                     <h2>Transactions History</h2>
                     <hr/>
                     <BootstrapTable
-                        keyField='id'
+                        keyField='waktu'
                         data={ this.state.products }
                         columns={ this.columns }
                         noDataIndication= "Oops.. No Transaction Found :("
