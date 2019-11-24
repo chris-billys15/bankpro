@@ -141,7 +141,6 @@ class TransferComponent extends Component {
     )
 
     if(success){
-      console.log('sukses')
       PopupboxManager.update({
         contentSuccess,
         config: {
@@ -150,6 +149,7 @@ class TransferComponent extends Component {
           }
         }
       })
+      console.log('sukses')
     }
     else{
       console.log('gagal')
