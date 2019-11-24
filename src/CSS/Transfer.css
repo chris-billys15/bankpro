@@ -89,6 +89,8 @@
     background-color: #e12159;
     border-color: white;
     color: white;
+    width:100%;
+    margin-left: 0px;
 }
 
 .button-submit:hover{
@@ -96,12 +98,16 @@
     border-color: white;
     color: white;
     opacity: 0.8;
+    width:100%;
+    margin-left: 0px;
 }
 
 .button-submit:disabled{
     background-color: darkgray;
     border-color: white;
     color: white;
+    width:100%;
+    margin-left: 0px;
 }
 
 .button-send-popup:hover{

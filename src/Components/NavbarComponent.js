@@ -28,7 +28,7 @@ export class NavbarComponent extends React.Component{
 
   getProfile(AccNo, cb){
     var soap = require('soap');
-    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+    var url = 'http://100.26.43.243:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {rekening: AccNo};
     soap.createClient(url, function(err, client) {
       client.historyTransaction(args, function(err, result) {

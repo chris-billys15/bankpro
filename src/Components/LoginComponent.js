@@ -39,13 +39,13 @@ export default class LoginComponent extends React.Component {
   validateRekening(AccNo, cb){
     let res = false;
     var soap = require('soap');
-    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+    var url = 'http://100.26.43.243:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {Rekening: AccNo};
     soap.createClient(url, function(err, client) {
       client.validateRekening(args, function(err, result) {
         console.log(result);
         res = result.return.accountExists;
-        cb(result)
+        cb(result.return.accountExists);
       });
     });
   }

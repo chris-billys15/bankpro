@@ -7,13 +7,15 @@ import { Col, FormGroup, Input, Label, Button } from 'reactstrap'
 import { PopupboxManager, PopupboxContainer } from 'react-popupbox'
 import 'react-popupbox/dist/react-popupbox.css'
 import { Form } from 'react-bootstrap'
+import { exportDefaultSpecifier } from '@babel/types'
 class TransferComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      senderAccount: localStorage.getItem("cookieBankPro"),
       recipientFullName: 'Christopher Billy Setiawan',
-      recipientAccNo: null,
-      amount: null,
+      recipientAccNo: 0,
+      amount: 0,
       messageState: 0,
       /*
       0 : haven't check rekening
@@ -25,6 +27,7 @@ class TransferComponent extends Component {
     this.handleChangeRecipientAccNo = this.handleChangeRecipientAccNo.bind(this)
     this.handleChangeAmount = this.handleChangeAmount.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSendButton = this.handleSendButton.bind(this)
     this.onCheck = this.onCheck.bind(this)
     this.changeMessageState = this.changeMessageState.bind(this)
   }
@@ -42,23 +45,30 @@ class TransferComponent extends Component {
     event.preventDefault()
   }
 
-  handleSendButton () {
-    let res;
+  // transferMoneyCallback(success){
+  //   this.updatePopupbox(success);
+  // }
+
+  transfer(cb){
     var soap = require('soap');
-    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+    var url = 'http://100.26.43.243:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {
-      RekeningPengirim: this.props.no_rek,
+      RekeningPengirim: this.state.senderAccount,
       RekeningPenerima: this.state.recipientAccNo,
-      Nominal: this.state.nominal
+      Nominal: this.state.amount
     };
+    console.log(this.state.amount)
     soap.createClient(url, function(err, client) {
-      console.log(err);
-      client.transfer(args, function(err, result) {
-        console.log(result);
-        res = result;
+      client.Transfer(args, function(err, result) {
+        console.log("transfer : ", result);
+        cb(result.return);
       });
     });
-    return res;
+  }
+
+  handleSendButton(e) {
+    this.transfer(this.updatePopupbox.bind(this))
+    e.preventDefault()
   }
 
   changeMessageState(msgState){
@@ -71,13 +81,14 @@ class TransferComponent extends Component {
     document.getElementById('send-button-transfer').disabled = false
     document.getElementById('send-button-transfer').enabled = true
   }
-  getReceiverProfile(callback){
+
+  getReceiverProfile(cb){
     var soap = require('soap');
-    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+    var url = 'http://100.26.43.243:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
     var args = {rekening: this.state.recipientAccNo};
     soap.createClient(url, function(err, client){
       client.historyTransaction(args, function(err,result){
-        callback(result);
+        cb(result);
       })
     })
   }
@@ -97,16 +108,16 @@ class TransferComponent extends Component {
   }
 
   checkAccNumber (handleCheckCallback) {
-    let res = false;
-    var soap = require('soap');
-    var url = 'http://3.93.238.160:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
-    var args = {Rekening: this.state.recipientAccNo};
-    soap.createClient(url, function(err, client) {
-      client.validateRekening(args, function(err, result) {
-        res = result;
-        handleCheckCallback(res)
+    if(this.state.recipientAccNo !== null){
+      var soap = require('soap');
+      var url = 'http://100.26.43.243:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
+      var args = {Rekening: this.state.recipientAccNo};
+      soap.createClient(url, function(err, client) {
+        client.validateRekening(args, function(err, result) {
+          handleCheckCallback(result)
+        });
       });
-    });
+    }
   }
 
   onCheck(e){
@@ -114,17 +125,54 @@ class TransferComponent extends Component {
     e.preventDefault();
   }
 
-  
+  updatePopupbox(success) {
+    const contentSuccess = (
+      <div>
+        <div className="alert alert-success">Transfer Success</div>
+        <Button className="button-submit" onClick={PopupboxManager.close}>Close</Button>
+      </div>
+    )
+
+    const contentFail = (
+      <div>
+        <div className="alert alert-danger">Transfer Failed</div>
+        <Button className="button-submit" onClick={PopupboxManager.close}>Close</Button>
+      </div>
+    )
+
+    if(success){
+      console.log('sukses')
+      PopupboxManager.update({
+        contentSuccess,
+        config: {
+          titleBar: {
+            text: 'Transfer'
+          }
+        }
+      })
+    }
+    else{
+      console.log('gagal')
+      PopupboxManager.update({
+        contentFail,
+        config: {
+          titleBar: {
+            text: 'Transfer'
+          }
+        }
+      })
+    }
+  }
 
   openPopupbox () {
     const content = (
-      <div className="flex-container-col">
+      <Form className="flex-container-col" onSubmit={this.handleSendButton}>
         <label style={{ fontWeight: 'bold' }}>Recipient :</label>
         <label style={{ fontStyle: 'italic' }}>{this.state.recipientFullName}</label>
         <label style={{ fontWeight: 'bold' }}>Amount :</label>
-        <Input type="money"/>
-        <Button className="button-send-popup" style={{ width: '100%' }} onChange={this.handleChangeAmount} onClick={this.handleSendButton}>SEND</Button>
-      </div>
+        <Input type="money" onChange={this.handleChangeAmount}/>
+        <Button className="button-send-popup" type="submit" style={{ width: '100%' }}>SEND</Button>
+      </Form>
     )
 
     PopupboxManager.open({
@@ -147,7 +195,7 @@ class TransferComponent extends Component {
           <h2>Transfer</h2>
         </div>
         <Form className="card-transfer" onSubmit={this.handleSubmit} style={{ marginTop: '8px' }}>
-          <Col>
+          <Col style={{padding:"0px"}}>
             <FormGroup>
               <Label style={{ fontStyle: 'italic' }}>Send to :</Label>
               <div className="flex-container-row">
@@ -163,13 +211,10 @@ class TransferComponent extends Component {
                 <Button className="button-check" name="check-button" onClick={this.onCheck}> CHECK</Button>
               </div>
             </FormGroup>
-            <div className="custom-control custom-checkbox mb-3">
-              <input type="checkbox" className="custom-control-input" id="customCheck" name="example1"/>
-            </div>
           </Col>
           {
             this.state.messageState == 1 &&
-            <div className="alert alert-success" id="receiver">
+            <div className="alert alert-success flex-container-row" id="receiver">
               <img src={require('../avatar.png')} alt="Azhar D." style={{ width: '50px', margin: '10px' }}/>
               <div className="flex-container-col">
                 <div className="fullName" style={{ alignmentBaseline: 'left', marginTop: '6px' }}>

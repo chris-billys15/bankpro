@@ -28,17 +28,24 @@ class TransactionsComponent extends Component {
 
 
     componentDidMount() {
-        if(this.props.responseObject){
-            this.parseHistoryList(this.props.responseObject.return.historyList);
+        if(this.props.responseObject !== null){
+            console.log('bb');
+            this.parseHistoryList(this.props.responseObject.return);
         }
     }
 
-    parseHistoryList(historyList){
-        if(historyList !== null){
-            this.setState({products : historyList})
+    parseHistoryList(response){
+        if(response.historyList !== undefined){
+            console.log('cc');
+            this.setState({products : response.historyList})
+        }
+        else{
+            this.setState({products : []})
         }
     }
     render() {
+        console.log(this.state);
+        console.log(this.columns);
         return (
             <div style={{display:"flex"}}>
                 <div className="card-transactions">
