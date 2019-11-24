@@ -27,4 +27,22 @@ Halaman Film Details: 13517062, 13517050<br>
 Halaman Buy Ticket: 13517062, 13517047<br>
 Halaman Home: 13517062, 13517050
 <br>
+<br>
+Pembagian Tugas DPPL
+1. ci/cd scripts - 13517050
+2. test react - 13517047
+3. lint - 13517050
+4. deployment - 13517062
+
+<br>
+Deskripsi<br>
+Bankpro adalah aplikasi banking berbasis web yang dapat menampung berbagai macam rekening dari berbagai macam bank di Indonesia.
+fungsionalitas dari bankPro adalah :
+1. Login
+2. Transfer Rekening
+3. Transfer Virtual Account
+3. Check History
+4. Menampilkan profile account
+
+bankpro mengandalkan webservice bank berbasis soap untuk menyimpan data-data pengguna dan mencatat setiap transaksi yang ada.
 
