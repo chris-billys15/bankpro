@@ -1,4 +1,4 @@
-# Bank Pro Edit - hello buddy
+# Bank Pro Edit
 
 
 REST<br>
