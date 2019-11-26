@@ -28,14 +28,18 @@ Halaman Buy Ticket: 13517062, 13517047<br>
 Halaman Home: 13517062, 13517050
 <br>
 <br>
-Pembagian Tugas DPPL
+#Pembagian Tugas DPPL
 1. ci/cd scripts - 13517050
-2. test react - 13517047
+2. test react - 13517062
 3. lint - 13517050
-4. deployment - 13517062
+4. deployment - 13517047
+
+#ENDPOINT<br>
+http://100.26.43.243:3000/
+
 
 <br>
-Deskripsi<br>
+#Deskripsi<br>
 Bankpro adalah aplikasi banking berbasis web yang dapat menampung berbagai macam rekening dari berbagai macam bank di Indonesia.
 fungsionalitas dari bankPro adalah :
 1. Login
@@ -45,4 +49,3 @@ fungsionalitas dari bankPro adalah :
 4. Menampilkan profile account
 
 bankpro mengandalkan webservice bank berbasis soap untuk menyimpan data-data pengguna dan mencatat setiap transaksi yang ada.
-
