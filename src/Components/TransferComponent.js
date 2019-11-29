@@ -45,10 +45,6 @@ class TransferComponent extends Component {
     event.preventDefault()
   }
 
-  // transferMoneyCallback(success){
-  //   this.updatePopupbox(success);
-  // }
-
   transfer(cb){
     var soap = require('soap');
     var url = 'http://100.26.43.243:8080/bankprowebservice-1.0-SNAPSHOT/NewWebService?wsdl';
@@ -145,22 +141,26 @@ class TransferComponent extends Component {
         contentSuccess,
         config: {
           titleBar: {
-            text: 'Transfer'
+            text: 'Transfer Succeed'
           }
         }
       })
       console.log('sukses')
+      PopupboxManager.close();
+      window.alert("Transfer Succeed")
     }
     else{
-      console.log('gagal')
       PopupboxManager.update({
         contentFail,
         config: {
           titleBar: {
-            text: 'Transfer'
+            text: 'Transfer Failed'
           }
         }
       })
+      console.log('gagal')
+      PopupboxManager.close();
+      window.alert("Transfer Failed")
     }
   }
 
