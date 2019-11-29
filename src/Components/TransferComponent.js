@@ -12,7 +12,7 @@ class TransferComponent extends Component {
     super(props)
     this.state = {
       senderAccount: localStorage.getItem("cookieBankPro"),
-      recipientFullName: 'Christopher Billy Setiawan',
+      recipientFullName: 'ss',
       recipientAccNo: 0,
       amount: 0,
       messageState: 0,
@@ -29,6 +29,7 @@ class TransferComponent extends Component {
     this.handleSendButton = this.handleSendButton.bind(this)
     this.onCheck = this.onCheck.bind(this)
     this.changeMessageState = this.changeMessageState.bind(this)
+    this.getReceiverProfileCallback = this.getReceiverProfileCallback.bind(this)
   }
 
   handleChangeRecipientAccNo (event) {
@@ -96,9 +97,12 @@ class TransferComponent extends Component {
       this.changeMessageState(3)
       document.getElementById('send-button-transfer').disabled = false
       document.getElementById('send-button-transfer').enabled = true
+      this.setState({recipientFullName: "Engima Owner"})
     }
     else{
       this.changeMessageState(2)
+      document.getElementById('send-button-transfer').disabled = true
+      document.getElementById('send-button-transfer').enabled = false
     }
   }
 
@@ -204,7 +208,7 @@ class TransferComponent extends Component {
                   name="accountNo"
                   id="accountNo"
                   placeholder="Recipient account number"
-                  value={this.state.value}
+                  // value={this.state.value}
                   onChange={this.handleChangeRecipientAccNo}
                 />
                 <Button className="button-check" name="check-button" onClick={this.onCheck}> CHECK</Button>
