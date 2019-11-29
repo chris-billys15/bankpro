@@ -7,7 +7,6 @@ import { Col, FormGroup, Input, Label, Button } from 'reactstrap'
 import { PopupboxManager, PopupboxContainer } from 'react-popupbox'
 import 'react-popupbox/dist/react-popupbox.css'
 import { Form } from 'react-bootstrap'
-import { exportDefaultSpecifier } from '@babel/types'
 class TransferComponent extends Component {
   constructor (props) {
     super(props)
@@ -213,7 +212,7 @@ class TransferComponent extends Component {
             </FormGroup>
           </Col>
           {
-            this.state.messageState == 1 &&
+            this.state.messageState === 1 &&
             <div className="alert alert-success flex-container-row" id="receiver">
               <img src={require('../avatar.png')} alt="Azhar D." style={{ width: '50px', margin: '10px' }}/>
               <div className="flex-container-col">
@@ -228,13 +227,13 @@ class TransferComponent extends Component {
           }
 
           {
-            this.state.messageState == 2 &&
+            this.state.messageState === 2 &&
             <div className="alert alert-danger" id="receiver-none">
               oops... account not found
             </div>
           }
           {
-            this.state.messageState == 3 &&
+            this.state.messageState === 3 &&
             <div className="alert alert-info" id="receiver-virtualAcc">
               Virtual Account detected
             </div>
