@@ -5,20 +5,24 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "pm2": "^4.1.2",
+    "chai": "^4.2.0",
+    "enzyme": "^3.10.0",
+    "pm2": "^4.1.2",
     "react": "^16.11.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-bootstrap-table-next": "^3.3.1",
     "react-dom": "^16.11.0",
     "react-popupbox": "^2.0.8",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "^3.2.0",
     "reactstrap": "^8.1.1",
-    "soap": "^0.30.0"
+    "soap": "^0.30.0",
+    "touch": "^3.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts ./src/test.js --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint src/Components/ --fix"
   },
@@ -38,7 +42,8 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^6.6.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "eslint": "^6.7.0",
     "eslint-plugin-react": "^7.16.0",
     "jest": "^24.9.0"
   }
